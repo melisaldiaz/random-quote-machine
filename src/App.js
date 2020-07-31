@@ -2,6 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import myQuotes from './Quotes';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 
 //Action type
@@ -44,30 +46,34 @@ function Quote(props) {
 
   return (
     <div class="container-fluid">
-      <div class="row justify-content-center">
-        <div class="col-md-7 col-sm-7">
+      <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-md-7 col-sm-12">
           <blockquote class="text-center clearfix" id="quote-box">
             <p id="text">{state.quote.text}</p>
             <footer class="blockquote-footer text-right" id="author">
               {state.quote.author}
             </footer>
+            <div class="bottom">
+              <a
+                class="button"
+                id="tweet-quote"
+                title="Share this quote!"
+                target="_blank"
+                href={twitterUrl}
+              >
 
-            <a
-              class="button"
-              id="tweet-quote"
-              title="Share this quote!"
-              target="_blank"
-              href={twitterUrl}
-            >
-              <i class="fab fa-twitter"></i>
-            </a>
-            <button
-              onClick={() => dispatch(randomQuoteAction())}
-              class="btn btn-dark"
-              id="new-quote"
-            >
-              New quote
+                <div class="icon">
+                  <FontAwesomeIcon icon={faTwitter} style={{ color: 'black', fontSize: '30' }} />
+                </div>
+              </a>
+              <button
+                onClick={() => dispatch(randomQuoteAction())}
+                class="btn btn-dark"
+                id="new-quote"
+              >
+                Next quote
             </button>
+            </div>
           </blockquote>
         </div>
       </div>
@@ -76,57 +82,6 @@ function Quote(props) {
 
 
 }
-
-
-/* class Quote extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(e) {
-    e.preventDefault();
-    this.props.getNextQuote();
-  }
-
-  render() {
-    return (
-      <div class="row justify-content-center">
-        <div class="col-md-7 col-sm-7">
-          <blockquote class="text-center clearfix" id="quote-box">
-            <p id="text">{this.props.text}</p>
-            <footer class="blockquote-footer text-right" id="author">
-              {this.props.author}
-            </footer>
-
-            <a
-              class="button"
-              id="tweet-quote"
-              title="Share this quote!"
-              target="_blank"
-              href={encodeURI(
-                "https://twitter.com/intent/tweet?text=" +
-                this.props.text +
-                " — " +
-                this.props.author
-              )}
-            >
-              <i class="fab fa-twitter"></i>
-            </a>
-            <button
-              onClick={this.handleClick}
-              class="btn btn-dark"
-              id="new-quote"
-            >
-              New quote
-            </button>
-          </blockquote>
-        </div>
-      </div>
-    );
-  }
-} */
 
 
 
